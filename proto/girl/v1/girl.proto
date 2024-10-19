@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package girl.v1;
+
+// import google protobuf
+import "google/protobuf/empty.proto";
+
+message Girl {
+  string id = 1;
+  Name name = 2;
+  int32 age = 3;
+  string cup = 4;
+  int32 hip = 5;
+  int32 height = 6;
+}
+
+message Name {
+  string firstname = 1;
+  string lastname = 2;
+}
+
+message GirlServiceListRequest {
+  google.protobuf.Empty empty = 1;
+}
+
+message GirlServiceListResponse {
+  repeated Girl girl = 1;
+}
+
+message GirlServiceRegisterRequest {
+  Girl girl = 1;
+}
+
+message GirlServiceRegisterResponse {
+    google.protobuf.Empty empty = 1;
+}
+
+service GirlService {
+  rpc List(GirlServiceListRequest) returns (GirlServiceListResponse);
+  rpc Register(GirlServiceRegisterRequest) returns (GirlServiceRegisterResponse);
+}
